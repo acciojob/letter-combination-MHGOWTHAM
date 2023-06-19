@@ -1,13 +1,24 @@
 function letterCombinations(input_digit) {
-  Given a digit string, return all possible letter combinations that the number could represent.
+if (nextDigits.length === 0) {
+      combinations.push(current);
+      return;
+    }
 
-A mapping of digit to letters (just like on the telephone buttons) is given below.
+    // Get the letters corresponding to the first digit
+    const letters = digitToLetters[nextDigits[0]];
 
-2=>abc 3=>def 4=>ghi 5=>jkl 6=>mno 7=>pqrs 8=>tuv 9=>wxyz The digit 0 maps to 0 itself. The digit 1 maps to 1 itself.
+    // Iterate over each letter and recursively call the function for the remaining digits
+    for (let i = 0; i < letters.length; i++) {
+      generateCombinations(current + letters[i], nextDigits.slice(1));
+    }
+  }
 
-Input: Digit string "23"
+  // Start the recursive function with an empty string and the input digits
+  if (digits) {
+    generateCombinations("", digits);
+  }
 
-Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+  return combinations;
 }
 
 module.exports = letterCombinations;
